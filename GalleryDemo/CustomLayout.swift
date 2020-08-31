@@ -12,7 +12,7 @@ class CustomLayout: UICollectionViewLayout {
   var numberOfColumns = 2
   var cellPadding: CGFloat = 3
   
-   var cache = [UICollectionViewLayoutAttributes]()
+   var SharePrefenceAtribute = [UICollectionViewLayoutAttributes]()
   
    var contentHeight: CGFloat = 0
   
@@ -29,7 +29,7 @@ class CustomLayout: UICollectionViewLayout {
   }
   
   override func prepare() {
-    guard cache.isEmpty, let collectionView = collectionView else {
+    guard SharePrefenceAtribute.isEmpty, let collectionView = collectionView else {
       return
     }
     
@@ -58,7 +58,7 @@ class CustomLayout: UICollectionViewLayout {
       
       let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
       attributes.frame = insetFrame
-      cache.append(attributes)
+      SharePrefenceAtribute.append(attributes)
       
       contentHeight = max(contentHeight, frame.maxY)
       yOffset[column] = yOffset[column] + cellHeight
@@ -89,7 +89,7 @@ class CustomLayout: UICollectionViewLayout {
     
     var visibleLayoutAttributes = [UICollectionViewLayoutAttributes]()
     
-    for attributes in cache {
+    for attributes in SharePrefenceAtribute {
       if attributes.frame.intersects(rect) {
         visibleLayoutAttributes.append(attributes)
       }
@@ -99,6 +99,6 @@ class CustomLayout: UICollectionViewLayout {
   }
   
   override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-    return cache[indexPath.item]
+    return SharePrefenceAtribute[indexPath.item]
   }
 }
